@@ -1,0 +1,96 @@
+import pyexcel as p
+records = p.iget_records(file_name="hanhan.xls")
+for x in records:
+	print(x["分数"])
+
+sequeFrames = [{"镜头号":"SC_0008","分数":4295.40527657458},{"镜头号":"SC_0009","分数":2648.15236989907},{"镜头号":"SC_0006","分数":1565.54682804501},{"镜头号":"SC_0030","分数":1388.41972187105},{"镜头号":"SC_0020","分数":1065.24300014508},{"镜头号":"SC_0029","分数":1032.41466498104},{"镜头号":"SC_0003","分数":971.718720855527},{"镜头号":"SC_0019","分数":918.026154898344},{"镜头号":"SC_0018","分数":859.226959026756},{"镜头号":"SC_0045","分数":729.810366624526},{"镜头号":"SC_0023","分数":721.347951337796},{"镜头号":"SC_0040","分数":688.665519885598},{"镜头号":"SC_0034","分数":674.804667260782},{"镜头号":"SC_0005","分数":641.830428384904},{"镜头号":"SC_0007","分数":637.015605894178},{"镜头号":"SC_0022","分数":610.169322915587},{"镜头号":"SC_0031","分数":520.438540133883},{"镜头号":"SC_0026","分数":520.000828998363},{"镜头号":"SC_0015","分数":508.62033947483},{"镜头号":"SC_0043","分数":503.367805848583},{"镜头号":"SC_0014","分数":486.297071563284},{"镜头号":"SC_0028","分数":479.293693394956},{"镜头号":"SC_0044","分数":478.564174835755},{"镜头号":"SC_0038","分数":466.891877888541},{"镜头号":"SC_0046","分数":442.088246875712},{"镜头号":"SC_0004","分数":425.455223725933},{"镜头号":"SC_0010","分数":421.369919794408},{"镜头号":"SC_0021","分数":413.637023066879},{"镜头号":"SC_0011","分数":407.071356034072},{"镜头号":"SC_0036","分数":393.648214544776},{"镜头号":"SC_0001","分数":379.34965078444},{"镜头号":"SC_0039","分数":361.111686804419},{"镜头号":"SC_0033","分数":359.506745974177},{"镜头号":"SC_0016","分数":340.101552299434},{"镜头号":"SC_0013","分数":337.037574350791},{"镜头号":"SC_0035","分数":337.037574350791},{"镜头号":"SC_0037","分数":309.315869101159},{"镜头号":"SC_0024","分数":304.646950322273},{"镜头号":"SC_0017","分数":281.156452716006},{"镜头号":"SC_0027","分数":261.459451617583},{"镜头号":"SC_0025","分数":220.606412302336},{"镜头号":"SC_0002","分数":197.407722119749},{"镜头号":"SC_0012","分数":181.21241010549},{"镜头号":"SC_0042","分数":168.081076039875},{"镜头号":"SC_0041","分数":134.231414892956},{"镜头号":"SC_0032","分数":84.6241528672981},{"镜头号":"SC_0047","分数":0}]
+frames = []
+for x in sequeFrames:
+	frames.append(x["分数"])
+
+# print(frames)
+numOfPeople = 10
+DR = 0.05
+arevageA = float(sum(frames) / numOfPeople)
+arevageUp = arevageA  * (1 + DR)
+# print(arevageUp)
+
+
+bags = []
+for x in range(0,numOfPeople):
+	bags.append([])
+lost = []
+for x in sequeFrames:
+	for index, y in enumerate(bags):
+		sum = 0
+		for z in y:
+			sum = sum + z["分数"]
+
+		if (sum + x["分数"]) <= arevageA:
+			y.append(x)
+			x["分组"] = index + 1
+			break
+		else:
+			if index == len(bags)-1:
+				lost.append(x)
+				x["分组"] = 0
+# for x in sequeFrames:
+
+
+# for x in bags:
+	# print(x)
+# 
+# print(lost)
+# print(sequeFrames)	
+# p.save_as(records=sequeFrames,dest_file_name="hanhan.xls")
+# for x in a:
+
+# 	for index,y in enumerate(sublists):
+# 		if  (sum(y) + x) <= arevageA:
+# 			y.append(x)
+# 			break
+# 		else:
+# 			if index == 3:
+# 				c.append(x)
+# for x in sequeFrames:
+
+# print(bags)
+
+# a = [1,1,1,1,26,26,3,10,5,21,7, 22,20,24,100, 100]
+# # numOfPeople = []
+# sublists = []
+
+# b = []
+# DR = 0.1
+# N = len(sublists)
+# while len(sublists) > (sum(a) / max(a)):
+# 	b.append(max(a))
+# 	a.pop(a.index(max(a)))
+# print(b)
+# a.sort()
+# a.reverse()
+# arevageA = float(sum(a) / N)
+# arevageUp = arevageA  * (1 + DR)
+# arevageDown = arevageA * (1 - DR)
+# for x in range(0,len(sublists)):
+# 	sublists[x] = []
+	
+# c = []
+# for x in a:
+# 	for index,y in enumerate(sublists):
+# 		if  (sum(y) + x) <= arevageA:
+# 			y.append(x)
+# 			break
+# 		else:
+# 			if index == 3:
+# 				c.append(x)
+# 				# y.append(x)
+			
+# print(c)
+# print(arevageDown, arevageA, arevageUp)
+# print(sum(a))
+# print(a)
+# print(sublists)
+# for x in sublists:
+# 	print(sum(x))
+	
