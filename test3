@@ -1,0 +1,104 @@
+import pyexcel as p
+fileName = "hanhan" #excel文件路径不要带.xls
+numOfPeople = 10 #分组数量
+DR = 0.01 #误差范围
+records = p.iget_records(file_name=fileName + ".xls" )
+sequeFrames = []
+bags = []
+lost = []
+
+
+sumScores = 0
+for x in records:
+	sequeFrames.append(x)
+	# try
+	sumScores = sumScores + float(x["分数"]) 	
+# print(sequeFrames)
+# print(sequeFrames)
+arevageA = float(sumScores / numOfPeople)
+arevageUp = arevageA * (1 + DR)
+# sequeFrames = sorted(lambda:)
+
+for x in range(0,numOfPeople):
+	bags.append([])
+
+for x in sequeFrames:
+	for index, y in enumerate(bags):
+		sum = 0
+		for z in y:
+			sum = sum + z["分数"]
+
+		if (sum + x["分数"]) <= arevageA:
+			y.append(x)
+			x["分组"] = index + 1
+			break
+		else:
+			if index == len(bags)-1:
+				lost.append(x)
+				x["分组"] = 0
+
+
+p.save_as(records=sequeFrames,dest_file_name=fileName + "_V1" + ".xls")
+
+
+
+
+# for x in sequeFrames:
+
+
+# for x in bags:
+	# print(x)
+# 
+# print(lost)
+# print(sequeFrames)	
+# for x in a:
+
+# 	for index,y in enumerate(sublists):
+# 		if  (sum(y) + x) <= arevageA:
+# 			y.append(x)
+# 			break
+# 		else:
+# 			if index == 3:
+# 				c.append(x)
+# for x in sequeFrames:
+
+# print(bags)
+
+# a = [1,1,1,1,26,26,3,10,5,21,7, 22,20,24,100, 100]
+# # numOfPeople = []
+# sublists = []
+
+# b = []
+# DR = 0.1
+# N = len(sublists)
+# while len(sublists) > (sum(a) / max(a)):
+# 	b.append(max(a))
+# 	a.pop(a.index(max(a)))
+# print(b)
+# a.sort()
+# a.reverse()
+# arevageA = float(sum(a) / N)
+# arevageUp = arevageA  * (1 + DR)
+# arevageDown = arevageA * (1 - DR)
+# for x in range(0,len(sublists)):
+# 	sublists[x] = []
+	
+# c = []
+# for x in a:
+# 	for index,y in enumerate(sublists):
+# 		if  (sum(y) + x) <= arevageA:
+# 			y.append(x)
+# 			break
+# 		else:
+# 			if index == 3:
+# 				c.append(x)
+# 				# y.append(x)
+			
+# print(c)
+# print(arevageDown, arevageA, arevageUp)
+# print(sum(a))
+# print(a)
+# print(sublists)
+# for x in sublists:
+# 	print(sum(x))
+	
